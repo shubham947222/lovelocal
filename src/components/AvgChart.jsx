@@ -52,7 +52,7 @@ const options = {
 const AvgChart = () => {
     return <Card
         bordered={false}
-        className="bg-white shadow-md rounded-lg p-4"
+        className="bg-white shadow-md rounded-lg"
     >
         <p className="text-[#1E293B] text-xl font-semibold">AVG Order Value</p>
         <div className="flex items-center">

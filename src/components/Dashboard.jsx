@@ -71,7 +71,7 @@ const Dashboard = () => {
     const {
         token: { colorBgContainer, borderRadiusLG },
     } = theme.useToken();
-    const [collapsed, setCollapsed] = useState(false);
+    const [collapsed, setCollapsed] = useState(true);
     const [showSearch, setShowSearch] = useState(false);
 
     const [sales, setSales] = useState([]);
@@ -166,7 +166,7 @@ const Dashboard = () => {
                                     className="w-full h-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none"
                                 />
                             </div>
-                            <div className="flex items-center space-x-2">
+                            <div className="lg:flex hidden items-center space-x-2">
                                 <div
                                     className="flex items-center justify-center w-8 h-8 bg-gray-200 rounded-full cursor-pointer"
                                     onClick={() => setShowSearch(!showSearch)}
@@ -190,7 +190,7 @@ const Dashboard = () => {
                 </Header>
                 <Content
                     style={{
-                        padding: 24,
+                        padding: 10,
                     }}
                 >
                     <div
@@ -199,12 +199,12 @@ const Dashboard = () => {
                             backgroundSize: 'cover',
                             backgroundRepeat: 'no-repeat',
                         }}
-                        className='flex flex-col justify-center text-dark h-[116px] px-4'
+                        className='flex flex-col justify-center text-dark py-10 px-4'
                     >
                         <h1 className='text-xl font-semibold'>Good afternoon, Shubham 👋</h1>
                         <p>Here is what’s happening today</p>
                     </div>
-                    <div className='flex justify-between items-center my-4'>
+                    <div className='flex justify-between flex-wrap items-center gap-2 my-2'>
                         <Avatar.Group>
                             <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=1" />
                             <a href="https://ant.design">
