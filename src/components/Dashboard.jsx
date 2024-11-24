@@ -14,7 +14,7 @@ import {
     WarningOutlined,
     WechatOutlined,
 } from '@ant-design/icons';
-import { Avatar, Button, Card, DatePicker, Layout, Menu, theme } from 'antd';
+import { Avatar, Button, Card, DatePicker, Dropdown, Layout, Menu, Space, theme } from 'antd';
 import BgCover from "../assets/bg.png"
 import CardIcon1 from "../assets/cardIcon1.png"
 import CardIcon2 from "../assets/cardIcon2.png"
@@ -33,8 +33,8 @@ import BarChart from './BarChart';
 import AvgChart from './AvgChart';
 import axios from 'axios';
 ChartJS.register(
-    CategoryScale, 
-    LinearScale, 
+    CategoryScale,
+    LinearScale,
     PointElement,
     LineElement,
     Title,
@@ -77,47 +77,67 @@ const Dashboard = () => {
     const [sales, setSales] = useState([]);
     const [orderValue, setOrderValue] = useState([]);
     const [revenue, setRevenue] = useState([]);
-  
-  const fetchSales = () => {
-    axios
-      .get('http://34.93.245.38/sale')
-      .then(res => {
-        console.log(res.data, "res");
-        setSales(res.data);
-      })
-      .catch(err => {
-        console.error("Error fetching sales:", err.response || err.message);
-      });
-  };
-  const fetchOrderValue = () => {
-    axios
-      .get('http://34.93.245.38/order-value')
-      .then(res => {
-        console.log(res.data, "res");
-        setOrderValue(res.data);
-      })
-      .catch(err => {
-        console.error("Error fetching orders:", err.response || err.message);
-      });
-  };
-  const fetchRevenue = () => {
-    axios
-      .get('http://34.93.245.38/revenue')
-      .then(res => {
-        console.log(res.data, "res");
-        setRevenue(res.data);
-      })
-      .catch(err => {
-        console.error("Error fetching revenue:", err.response || err.message);
-      });
-  };
-  
-  useEffect(() => {
-    fetchSales();
-    fetchOrderValue();
-    fetchRevenue();
-  }, []);
-  
+
+    const fetchSales = () => {
+        axios
+            .get('http://34.93.245.38/sale')
+            .then(res => {
+                console.log(res.data, "res");
+                setSales(res.data);
+            })
+            .catch(err => {
+                console.error("Error fetching sales:", err.response || err.message);
+            });
+    };
+    const fetchOrderValue = () => {
+        axios
+            .get('http://34.93.245.38/order-value')
+            .then(res => {
+                console.log(res.data, "res");
+                setOrderValue(res.data);
+            })
+            .catch(err => {
+                console.error("Error fetching orders:", err.response || err.message);
+            });
+    };
+    const fetchRevenue = () => {
+        axios
+            .get('http://34.93.245.38/revenue')
+            .then(res => {
+                console.log(res.data, "res");
+                setRevenue(res.data);
+            })
+            .catch(err => {
+                console.error("Error fetching revenue:", err.response || err.message);
+            });
+    };
+
+    useEffect(() => {
+        fetchSales();
+        fetchOrderValue();
+        fetchRevenue();
+    }, []);
+
+    const items = [
+        {
+            label: (
+                <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
+                    Search
+                </a>
+            ),
+            key: '0',
+        },
+        {
+            label: (
+                <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
+                    Chats
+                </a>
+            ),
+            key: '1',
+        },
+
+    ];
+
     return (
         <Layout className=''>
             <Sider trigger={null} collapsible collapsed={collapsed}>
@@ -166,7 +186,7 @@ const Dashboard = () => {
                                     className="w-full h-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none"
                                 />
                             </div>
-                            <div className="lg:flex hidden items-center space-x-2">
+                            <div className="sm:flex hidden items-center space-x-2">
                                 <div
                                     className="flex items-center justify-center w-8 h-8 bg-gray-200 rounded-full cursor-pointer"
                                     onClick={() => setShowSearch(!showSearch)}
@@ -180,9 +200,25 @@ const Dashboard = () => {
                                     <InfoCircleOutlined className="text-gray-600 text-md" />
                                 </div>
                             </div>
-                            <div>
-                                Shubham <DownOutlined />
+                            <div className='flex sm:hidden'>
+                                <Dropdown
+                                    menu={{
+                                        items,
+                                    }}
+                                    trigger={['click']}
+                                >
+                                    <a onClick={(e) => e.preventDefault()}>
+                                        <Space>
+                                            Shubhamm
+                                            <DownOutlined />
+                                        </Space>
+                                    </a>
+                                </Dropdown>
                             </div>
+                            <Space className='sm:flex hidden '>
+                                            Shubham
+                                            <DownOutlined />
+                                        </Space>
                         </div>
 
 
